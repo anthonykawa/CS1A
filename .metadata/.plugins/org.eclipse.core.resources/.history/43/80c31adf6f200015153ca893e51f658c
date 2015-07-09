@@ -1,0 +1,56 @@
+/**
+	 
+    File name:  customerReceipt.java
+
+    Program purpose: This program is to print a customer receipt from an ATM machine
+
+    Revision history:
+
+    Date                Programmer             Change ID               Description
+
+    07/1/2015          Anthony Kawa                  1                 Initial creation
+
+
+
+    @version 1.0
+    @author  Anthony Kawa
+
+    @since 07-1-2015
+
+*/
+public class customerReceipt {
+	
+	public static void main (String [ ] args) {
+	String customerName = "";
+	String accountNumber = "";
+	int month, day, year;
+	String transactionType = "";
+	double transactionAmount = 0.0;
+	double availableBalance = 1200.0;
+	
+	System.out.println("Please wait for receipt to be printed...");
+	 try {
+         Thread.sleep(3000);   // suspend for 3 seconds
+	 }
+	 catch (Exception e) {}
+	 month = 07; 
+	 day = 1; 
+	 year = 2015;
+	 customerName = "Fred Flinstone";
+	 accountNumber = "1234567890";
+	 transactionType = "D";
+	 transactionAmount = 200.0;
+	 availableBalance += transactionAmount;
+	 
+	 System.out.println("****************************************************************");
+	 System.out.println("                      Bank of US");
+	 System.out.println("         For Customer Service call 1-800-111-2222");
+	 System.out.println("            CUSTOMER ATM TRANSACTION RECEIPT");
+	 System.out.println(month + "/" + day + "/" + year);
+	 System.out.println("Customer name:        " + customerName);
+	 System.out.println("Account number:       " + accountNumber);
+	 System.out.println("Transaction type:     " + transactionType);
+	 System.out.println("Transaction amount:   " + "$" + transactionAmount);
+	 System.out.println("Available balance:    " + "$" + availableBalance);
+}
+}

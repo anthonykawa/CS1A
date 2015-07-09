@@ -1,0 +1,59 @@
+
+import java.io.*; //import Java I/O library package
+
+public class mortgageCalculation {
+	public static void main (String[] args){
+		
+		//Declare variable and assign initial value
+		String propertyAddress = "";
+		int propertyValue = 0;
+		double annualInterestRate = 0.00;
+		int loanDuration = 0;
+		int downPayment = 0;
+		double propertyTaxRate = 1.5;
+		
+		BufferedReader br = null;
+		String buffer = new String();
+		try {
+			br = new BufferedReader (new InputStreamReader (System.in));
+			System.out.print("Enter property address: ");
+			propertyAddress = br.readLine();
+			
+			System.out.print("Enter property value: ");
+			buffer = br.readLine();
+			propertyValue = Integer.parseInt(buffer);
+			
+			System.out.print("Enter annual interest rate(%): ");
+			buffer = br.readLine();
+			annualInterestRate = Double.parseDouble(buffer);
+			
+			System.out.print("Enter number of loan duration (years): ");
+			buffer = br.readLine();
+			loanDuration = Integer.parseInt(buffer);
+			
+			System.out.print("Enter down payment in percentage(%): ");
+			buffer = br.readLine();
+			downPayment = Integer.parseInt(buffer);
+			
+			
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		
+		// Performing calculations
+		int loanAmount = propertyValue * (1-downPayment/100);
+		double monthlyInterestRate = annualInterestRate/100/12;
+		double mortgageMonthlyPayment = loanAmount*monthlyInterestRate/(1-1/Math.pow(1+monthlyInterestRate,loanDuration*12));
+		double propertyTaxMonthlyPayment = propertyValue*propertyTaxRate/100/12;
+		double monthlyPayment = mortgageMonthlyPayment+propertyTaxMonthlyPayment;
+		double totalPayment = mortgageMonthlyPayment*12*loanDuration;
+		
+		System.out.println("Mortgage calculator is processing your data ...  Please wait …");
+		System.out.println("                     **************************************");
+		System.out.println("                           MORTGAGE CALCULATOR RESULTS");
+		System.out.println("                     **************************************");
+		
+	}
+}

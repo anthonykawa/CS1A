@@ -1,0 +1,12 @@
+
+public class WelcomeWithThreeMessages {
+	public static void main (String [] arg) {
+		float star=0;
+		double world=17.3233;
+		System.out.println("You mamm is fun!");
+		System.out.println("You're daddy is stupid!");
+		System.out.println("Hello there!");
+		System.out.println(star += world);
+	}
+
+}
