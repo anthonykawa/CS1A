@@ -7,7 +7,7 @@ public class Card
    // private data
    private char value;
    private Suit suit;
-   private boolean errorFlag;
+   private static boolean  errorFlag;
    
    
    // 4 overloaded constructors
@@ -30,53 +30,22 @@ public class Card
       this.value = card.value;
    }
    
-   public static void main(String[] args){
-      Card card1 = new Card();
-      Card card2 = new Card('B', Card.Suit.diamonds);
-      Card card3 = new Card('5', Card.Suit.hearts);
-      
-      System.out.println(card1.toString());
-      System.out.println(card2.toString());
-      System.out.println(card3.toString());
-      
-      card1.set('C', Card.Suit.clubs);
-      card2.set('5', Card.Suit.clubs);
-      card3.set('T', Card.Suit.diamonds);
-      System.out.println(" ");
-      System.out.println(card1.toString());
-      System.out.println(card2.toString());
-      System.out.println(card3.toString());
-   }
+   
    
    // mutator
-   public boolean set(char value, Suit suit)
+   public void set(char value, Suit suit)
    {
       char upVal;            // for upcasing char
-      boolean valid = true;   // return value
-      
-      // filter out bad suit input:
    
-     this.suit = suit;
+      this.suit = suit;
    
       // convert to uppercase to simplify
       upVal = Character.toUpperCase(value);
-      // check for validity
-      if (
-         upVal == 'A' || upVal == 'K'
-         || upVal == 'Q' || upVal == 'J'
-         || upVal == 'T'
-         || (upVal >= '2' && upVal <= '9')
-         ){
-         this.value = upVal;
-         errorFlag = true;
+      
+      this.errorFlag = isValid(upVal, suit);
+      if (errorFlag == false){
+    	  this.value = upVal;
       }
-      else
-      {
-         valid = false;
-         this.value = 'A';
-         errorFlag = false;
-      }
-      return valid;
    }
    
    // accessors
@@ -88,9 +57,28 @@ public class Card
    {
       return suit;
    }
-   public boolean getErr()
+   public static boolean getErr()
    {
       return errorFlag;
+   }
+   
+   private static boolean isValid(char value, Suit suit){
+	   boolean inValid;
+	   
+	   if (
+		         value == 'A' || value == 'K'
+		         || value == 'Q' || value == 'J'
+		         || value == 'T'
+		         || (value >= '2' && value <= '9')
+		         ){
+		         inValid = false;
+		      }
+		      else
+		      {
+		         inValid = true;
+		      }
+	   
+	   return inValid;
    }
    
    public boolean equals(Card card){
@@ -105,7 +93,7 @@ public class Card
       retVal =  String.valueOf(value) + " of " + suit;
       
       retErr = "** illegal **";
-      if (errorFlag == false){
+      if (getErr() == true){
          return retErr;
       }
       else{
