@@ -1,9 +1,0 @@
-
-public class WelcomeWithThreeMessages {
-	public static void main (String [] arg) {
-		System.out.print("You mamm is fun!");
-		System.out.print("You're daddy is stupid!");
-		System.out.print("Hello there!");
-	}
-
-}
